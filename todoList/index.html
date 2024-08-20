@@ -7,24 +7,16 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="main">
-      <div class="container">
-        <h1>Todo List</h1>
-        <div class="container-input">
-          <input type="text" placeholder="Enter task" class="input-task" />
-          <button class="add">Add</button>
+    <main class="section-center">
+      <form>
+        <h3>Todo List</h3>
+        <div class="form-control">
+          <input type="text" id="todo-input" placeholder="Go to gym" />
+          <button type="submit" class="todo-submit">Submit</button>
         </div>
-        <div class="container-list">
-          <ul class="task-list">
-            <li class="task">
-              Go to gym
-              <div class="btn-container">
-                <button class="edit">Edit</button>
-                <button class="delete">Delete</button>
-              </div>
-            </li>
-          </ul>
-        </div>
+      </form>
+      <div class="todo-container">
+        <div class="todo-list"></div>
       </div>
     </main>
     <script src="app.js"></script>
