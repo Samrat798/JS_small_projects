@@ -54,7 +54,6 @@ function getFromLocalStorage() {
     renderTask(todos);
   }
 }
-getFromLocalStorage();
 
 function toggle(id) {
   todos.forEach(function (item) {
@@ -64,10 +63,23 @@ function toggle(id) {
   });
 }
 
+function deleteTodo(id) {
+  todos = todos.filter(function (item) {
+    return item.id != id;
+  });
+  console.log(todos);
+  addToLocalStorage(todos);
+}
+getFromLocalStorage();
+
 todoList.addEventListener('click', function (e) {
   let ele = e.target.parentElement;
   if (e.target.type === 'checkbox') {
     toggle(ele.getAttribute('data-key'));
     ele.classList.add('completed');
+  }
+  console.log(e.target.classList.contains('delete'));
+  if (e.target.classList.contains('delete')) {
+    deleteTodo(ele.getAttribute('data-key'));
   }
 });
