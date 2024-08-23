@@ -59,13 +59,15 @@ getFromLocalStorage();
 function toggle(id) {
   todos.forEach(function (item) {
     if (item.id == id) {
-      item.completed ? (completed = true) : (completed = false);
+      item.completed = true;
     }
   });
 }
 
 todoList.addEventListener('click', function (e) {
+  let ele = e.target.parentElement;
   if (e.target.type === 'checkbox') {
-    toggle(e.target.parentElement.getAttribute('data-key'));
+    toggle(ele.getAttribute('data-key'));
+    ele.classList.add('completed');
   }
 });
