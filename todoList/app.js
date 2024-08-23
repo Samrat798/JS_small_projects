@@ -3,7 +3,7 @@ const inputTask = document.getElementById('todo-input');
 const submitBtn = document.querySelector('.todo-submit');
 const todoList = document.querySelector('.todo-list');
 
-const todos = [];
+let todos = [];
 
 submitBtn.addEventListener('click', addItem);
 
@@ -19,6 +19,7 @@ function addItem(e) {
     completed: false,
   };
   todos.push(newTask);
+  addToLocalStorage(todos);
   inputTask.value = '';
   console.log(todos);
 }
@@ -30,6 +31,7 @@ function renderTask(todos) {
     li.classList.add('todo-item');
     li.setAttribute('data-key', item.id);
     li.innerHTML = `
+      <input type='checkbox'/>
       ${item.task}
       <div class="btn-container">
         <button class="edit">Edit</button>
@@ -39,3 +41,31 @@ function renderTask(todos) {
     todoList.append(li);
   });
 }
+
+function addToLocalStorage(todos) {
+  localStorage.setItem('todos', JSON.stringify(todos));
+  renderTask(todos);
+}
+
+function getFromLocalStorage() {
+  const localTodo = localStorage.getItem('todos');
+  if (localTodo) {
+    todos = JSON.parse(localTodo);
+    renderTask(todos);
+  }
+}
+getFromLocalStorage();
+
+function toggle(id) {
+  todos.forEach(function (item) {
+    if (item.id == id) {
+      item.completed ? (completed = true) : (completed = false);
+    }
+  });
+}
+
+todoList.addEventListener('click', function (e) {
+  if (e.target.type === 'checkbox') {
+    toggle(e.target.parentElement.getAttribute('data-key'));
+  }
+});
