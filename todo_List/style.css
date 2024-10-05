@@ -31,7 +31,7 @@ h1 {
 
 .main {
   height: 80vh;
-  background-color: #222;
+  background-color: #fff;
   padding: 1rem 3rem;
 }
 
@@ -64,6 +64,14 @@ h1 {
   color: #fff;
 }
 
+.list {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 2rem;
+  background-color: #222;
+  box-shadow: 0 2rem 3rem rgba(0, 0, 0, 0.6);
+}
+
 .list-item {
   cursor: pointer;
   padding: 1.2rem 0.8rem 1.2rem 4rem;
@@ -72,4 +80,8 @@ h1 {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+}
+
+.strik {
+  text-decoration: line-through;
 }

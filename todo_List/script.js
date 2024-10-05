@@ -24,7 +24,7 @@ function addTask() {
   tasks.push(newTask);
   saveToLocalStorage(tasks);
   input.value = '';
-  console.log(tasks);
+  console.log(listDom);
 }
 
 function displayTask(tasks) {
@@ -32,11 +32,12 @@ function displayTask(tasks) {
   tasks.map((task) => {
     const li = document.createElement('li');
     li.classList.add('list-item');
+    li.setAttribute('data-key', task.id);
     li.innerHTML = `${task.task}
-    <div class="btn-container">
+        <div class="btn-container">
             <button class="btn delete">Delete</button> 
             <button class="btn edit">Edit</button>
-          </div>
+        </div>
     `;
     listDom.appendChild(li);
   });
@@ -54,3 +55,18 @@ function getFromLocalStorage() {
     displayTask(tasks);
   }
 }
+
+function deleteItem(id) {
+  tasks = tasks.filter((task) => task.id != id);
+  saveToLocalStorage(tasks);
+  displayTask(tasks);
+}
+
+listDom.addEventListener('click', function (e) {
+  const todoItem = document.querySelector('.list-item');
+  todoItem.classList.toggle('strik');
+  if (e.target.classList.contains('delete')) {
+    console.log(e.target.parentNode.parentNode.getAttribute('data-key'));
+    // deleteItem(e.target.parentElement.getAttribute('data-key'));
+  }
+});
