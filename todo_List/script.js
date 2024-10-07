@@ -67,6 +67,6 @@ listDom.addEventListener('click', function (e) {
   todoItem.classList.toggle('strik');
   if (e.target.classList.contains('delete')) {
     console.log(e.target.parentNode.parentNode.getAttribute('data-key'));
-    // deleteItem(e.target.parentElement.getAttribute('data-key'));
+    deleteItem(e.target.parentNode.parentNode.getAttribute('data-key'));
   }
 });
